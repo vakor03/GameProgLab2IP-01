@@ -1,23 +1,36 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Scripts
 {
-    public class InputReader : MonoBehaviour
+    public class InputReader : MonoBehaviour, IDisposable
     {
-        public Vector2 GetMovementVector()
+        private PlayerInputActions _playerInputActions;
+
+        private void Awake()
         {
-            return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            _playerInputActions = new PlayerInputActions();
+            _playerInputActions.Player.Enable();
+            _playerInputActions.Player.Jump.performed += PlayerOnJump;
         }
-        
-        public event Action OnJump;
-        
-        private void Update()
+
+        private void PlayerOnJump(InputAction.CallbackContext obj)
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                OnJump?.Invoke();
-            }
+            OnJump?.Invoke();
+        }
+
+        public Vector2 GetMovementVectorNormalized()
+        {
+            return _playerInputActions.Player.Movement.ReadValue<Vector2>().normalized;
+        }
+
+        public event Action OnJump;
+
+        public void Dispose()
+        {
+            _playerInputActions.Player.Jump.performed -= PlayerOnJump;
+            _playerInputActions?.Dispose();
         }
     }
 }

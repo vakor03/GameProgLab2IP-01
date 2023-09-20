@@ -41,7 +41,7 @@ namespace _Scripts
         private void Update()
         {
             Vector2 inputVectorNormalized = 
-                inputReader.GetMovementVector().normalized;
+                inputReader.GetMovementVectorNormalized().normalized;
 
             Move(inputVectorNormalized);
         }
