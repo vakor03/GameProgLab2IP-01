@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Scripts
 {
@@ -41,16 +40,16 @@ namespace _Scripts
 
         private void Update()
         {
-            Vector2 inputVectorNormalized = inputReader.GetMovementVector().normalized;
+            Vector2 inputVectorNormalized = 
+                inputReader.GetMovementVector().normalized;
 
             Move(inputVectorNormalized);
         }
 
         private void Move(Vector2 movementVectorNormalized)
         {
-            var finalSpeed = speed;
-            _rigidbody.velocity = new Vector3(movementVectorNormalized.x * finalSpeed, _rigidbody.velocity.y,
-                movementVectorNormalized.y * finalSpeed);
+            _rigidbody.velocity = new Vector3(movementVectorNormalized.x * speed, _rigidbody.velocity.y,
+                movementVectorNormalized.y * speed);
         }
     }
 }

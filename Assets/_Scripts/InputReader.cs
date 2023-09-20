@@ -7,7 +7,7 @@ namespace _Scripts
     {
         public Vector2 GetMovementVector()
         {
-            return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         }
         
         public event Action OnJump;

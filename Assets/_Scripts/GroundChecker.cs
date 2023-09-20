@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace _Scripts
 {
@@ -18,4 +17,10 @@ namespace _Scripts
             return count > 0;
         }
     }
+}
+
+public enum SceneName
+{
+    Scene1,
+    Scene2,
 }
